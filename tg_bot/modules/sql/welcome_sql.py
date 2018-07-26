@@ -22,7 +22,7 @@ class Welcome(BASE):
     leave_type = Column(Integer, default=Types.TEXT.value)
 
     clean_welcome = Column(BigInteger)
-    del_joined = Column(BigInteger)
+	del_joined = Column(BigInteger)
     del_commands = Column(BigInteger)
 
     def __init__(self, chat_id, should_welcome=True, should_goodbye=True):
@@ -143,41 +143,6 @@ def set_cmd_joined(chat_id, cmd_joined):
         SESSION.commit()
 
 
-def get_cmd_pref(chat_id):
-    welc = SESSION.query(Welcome).get(str(chat_id))
-    SESSION.close()
-    if welc:
-        return welc.del_commands
-    return False
-	
-def set_del_joined(chat_id, del_joined):
-    with INSERTION_LOCK:
-        curr = SESSION.query(Welcome).get(str(chat_id))
-        if not curr:
-            curr = Welcome(str(chat_id))
-        curr.del_joined = int(del_joined)
-        SESSION.add(curr)
-        SESSION.commit()
-
-
-def get_del_pref(chat_id):
-    welc = SESSION.query(Welcome).get(str(chat_id))
-    SESSION.close()
-    if welc:
-        return welc.del_joined
-    return False
-
-
-def set_cmd_joined(chat_id, cmd_joined):
-    with INSERTION_LOCK:
-        curr = SESSION.query(Welcome).get(str(chat_id))
-        if not curr:
-            curr = Welcome(str(chat_id))
-        curr.del_commands = int(cmd_joined)
-        SESSION.add(curr)
-        SESSION.commit()
-	
-	
 def get_cmd_pref(chat_id):
     welc = SESSION.query(Welcome).get(str(chat_id))
     SESSION.close()

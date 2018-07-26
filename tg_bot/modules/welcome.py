@@ -174,6 +174,7 @@ def new_member(bot: Bot, update: Update):
                             sql.DEFAULT_WELCOME.format(first=first_name))  # type: Optional[Message]
             delete_join(bot, update)
 
+
         prev_welc = sql.get_clean_pref(chat.id)
         if prev_welc:
             try:
@@ -442,6 +443,53 @@ def clean_welcome(bot: Bot, update: Update, args: List[str]) -> str:
         update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
         return ""
 
+
+@run_async
+@user_admin
+@loggable
+def del_joined(bot: Bot, update: Update, args: List[str]) -> str:
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
+
+    if not args:
+        del_pref = sql.get_del_pref(chat.id)
+        if del_pref:
+            update.effective_message.reply_text("I should be deleting `user` joined the chat messages now.")
+        else:
+            update.effective_message.reply_text("I'm currently not deleting old joined messages!")
+        return ""
+
+    if args[0].lower() in ("on", "yes"):
+        sql.set_del_joined(str(chat.id), True)
+        update.effective_message.reply_text("I'll try to delete old joined messages!")
+        return "<b>{}:</b>" \
+               "\n#CLEAN_WELCOME" \
+               "\n<b>Admin:</b> {}" \
+               "\nHas toggled clean welcomes to <code>ON</code>.".format(html.escape(chat.title),
+                                                                         mention_html(user.id, user.first_name))
+    elif args[0].lower() in ("off", "no"):
+        sql.set_del_joined(str(chat.id), False)
+        update.effective_message.reply_text("I won't delete old joined messages.")
+        return "<b>{}:</b>" \
+               "\n#CLEAN_WELCOME" \
+               "\n<b>Admin:</b> {}" \
+               "\nHas toggled joined deletion to <code>OFF</code>.".format(html.escape(chat.title),
+                                                                          mention_html(user.id, user.first_name))
+    else:
+        # idek what you're writing, say yes or no
+        update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
+        return ""
+
+
+@run_async
+def delete_join(bot: Bot, update: Update):
+    chat = update.effective_chat  # type: Optional[Chat]
+    join = update.effective_message.new_chat_members
+    if can_delete(chat, bot.id):
+        del_join = sql.get_del_pref(chat.id)
+        if del_join:
+            update.message.delete()
+            
 
 WELC_HELP_TXT = "Your group's welcome/goodbye messages can be personalised in multiple ways. If you want the messages" \
                 " to be individually generated, like the default welcome message is, you can use *these* variables:\n" \
