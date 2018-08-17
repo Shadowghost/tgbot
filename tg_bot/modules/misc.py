@@ -9,10 +9,9 @@ from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
 from telegram.ext import CommandHandler, run_async, Filters
 from telegram.utils.helpers import escape_markdown, mention_html
-
-from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, WHITELIST_USERS, BAN_STICKER
-from tg_bot.__main__ import GDPR
-from tg_bot.__main__ import STATS, USER_INFO
+                                                           
+from tg_bot import dispatcher, OWNER_ID, SUDO_USERS, SUPPORT_USERS, SECRET_SUDO_USERS, WHITELIST_USERS, BAN_STICKER
+from tg_bot.__main__ import STATS, USER_INFO, GDPR
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.helper_funcs.filters import CustomFilters
@@ -471,10 +470,11 @@ RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
 INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
 
-ECHO_HANDLER = CommandHandler("echo", echo, filters=Filters.user(OWNER_ID))
+PING_HANDLER = DisableAbleCommandHandler("ping", ping)
+ECHO_HANDLER = CommandHandler("echo", echo, filters=CustomFilters.sudo_filter | CustomFilters.secret_sudo_filter)
 MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
 
-STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter)
+STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter | CustomFilters.secret_sudo_filter)
 GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
 GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
 
@@ -487,8 +487,5 @@ dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
 dispatcher.add_handler(MD_HELP_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
-<<<<<<< HEAD
 dispatcher.add_handler(GDPR_HANDLER)
-=======
 dispatcher.add_handler(GPS_HANDLER)
->>>>>>> b194488... Add gps !
