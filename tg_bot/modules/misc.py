@@ -200,6 +200,43 @@ def get_id(bot: Bot, update: Update, args: List[str]):
                     escape_markdown(user1.first_name),
                     user1.id),
                 parse_mode=ParseMode.MARKDOWN)
+        elif update.effective_message.reply_to_message:
+            m1 = update.effective_message.reply_to_message
+            if m1.audio:
+                update.effective_message.reply_text(
+                    "The audio message has file id `{}`".format(escape_markdown(m1.audio.file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
+            elif m1.document:
+                update.effective_message.reply_text(
+                    "The document message has file id `{}`".format(escape_markdown(m1.document.file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
+            # elif m1.animation:
+            #     update.effective_message.reply_text(
+            #         "The animation message has file id `{}`".format(escape_markdown(m1.animation.file_id)),
+            #         parse_mode=ParseMode.MARKDOWN
+            #     )
+            elif m1.photo:
+                update.effective_message.reply_text(
+                    "The HQ photo has file id `{}`".format(escape_markdown(m1.photo[-1].file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
+            elif m1.video:
+                update.effective_message.reply_text(
+                    "The video message has file id `{}`".format(escape_markdown(m1.video.file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
+            elif m1.voice:
+                update.effective_message.reply_text(
+                    "The voice message has file id `{}`".format(escape_markdown(m1.voice.file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
+            elif m1.video_note:
+                update.effective_message.reply_text(
+                    "The video note has file id `{}`".format(escape_markdown(m1.video_note.file_id)),
+                    parse_mode=ParseMode.MARKDOWN
+                )
         else:
             user = bot.get_chat(user_id)
             update.effective_message.reply_text("{}'s id is `{}`.".format(escape_markdown(user.first_name), user.id),

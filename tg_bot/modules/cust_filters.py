@@ -148,6 +148,11 @@ def reply_filter(bot: Bot, update: Update):
     to_match = extract_text(message)
     if not to_match:
         return
+		
+    # my custom thing
+    if message.reply_to_message:
+        message = message.reply_to_message
+    # my custom thing
 
     chat_filters = sql.get_chat_triggers(chat.id)
     for keyword in chat_filters:
@@ -171,9 +176,12 @@ def reply_filter(bot: Bot, update: Update):
                 keyb = build_keyboard(buttons)
                 keyboard = InlineKeyboardMarkup(keyb)
 
+				should_preview_disabled = True
+                if "telegra.ph" in filt.reply:
+                    should_preview_disabled = False
                 try:
                     message.reply_text(filt.reply, parse_mode=ParseMode.MARKDOWN,
-                                       disable_web_page_preview=True,
+                                       disable_web_page_preview=should_preview_disabled,
                                        reply_markup=keyboard)
                 except BadRequest as excp:
                     if excp.message == "Unsupported url protocol":
