@@ -176,7 +176,7 @@ def reply_filter(bot: Bot, update: Update):
                 keyb = build_keyboard(buttons)
                 keyboard = InlineKeyboardMarkup(keyb)
 
-				should_preview_disabled = True
+                should_preview_disabled = True
                 if "telegra.ph" in filt.reply:
                     should_preview_disabled = False
                 try:

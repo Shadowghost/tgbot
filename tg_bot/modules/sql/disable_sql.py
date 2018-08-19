@@ -11,7 +11,7 @@ class Disable(BASE):
     command = Column(UnicodeText, primary_key=True)
 
     def __init__(self, chat_id, command):
-        self.chat_id = chat_id
+        self.chat_id = str(chat_id)
         self.command = command
 
     def __repr__(self):
