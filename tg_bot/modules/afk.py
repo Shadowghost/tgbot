@@ -58,20 +58,6 @@ def reply_afk(bot: Bot, update: Update):
             else:
                 return
 
-<<<<<<< HEAD
-            if sql.is_afk(user_id):
-                valid, reason = sql.check_afk_status(user_id)
-                if valid:
-                    if not reason:
-                        res = "{} is AFK!".format(fst_name)
-                    else:
-                        res = "{} is AFK! says its because of:\n{}".format(fst_name, reason)
-                    message.reply_text(res)
-
-
-def __gdpr__(user_id):
-    sql.rm_afk(user_id)
-=======
             check_afk(bot, update, user_id, fst_name)
 
     elif message.reply_to_message:
@@ -88,7 +74,6 @@ def check_afk(bot, update, user_id, fst_name):
             res = "{} is AFK! says its because of: \n{}".format(fst_name, user.reason)
         update.effective_message.reply_text(res)
 
->>>>>>> a455808... Check if afk even when someone replies
 
 
 __help__ = """

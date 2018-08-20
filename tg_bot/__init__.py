@@ -97,15 +97,14 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
 
 
+	
+	
 SUDO_USERS.add(OWNER_ID)
-<<<<<<< HEAD
-=======
 import tg_bot.modules.sql.gpromote_sql as gpromote_sql
 sudo_list = gpromote_sql.get_sudo_list()
 for i in sudo_list:
     temp = i['user_id']
     SUDO_USERS.add(temp)
->>>>>>> a8422b3... Update sudo user list on every startup
 
 updater = tg.Updater(TOKEN, workers=WORKERS)
 dispatcher = updater.dispatcher
