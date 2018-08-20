@@ -14,9 +14,6 @@ gTTS
 zalgo_text
 feedparser
 pynewtonmath
-bs4
-lxml
-pyowm
 spongemock
 geopy
 gsearch

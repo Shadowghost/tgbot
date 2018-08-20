@@ -1,6 +1,7 @@
 import html
 import json
 import random
+import time
 from datetime import datetime
 from typing import Optional, List
 
@@ -386,7 +387,7 @@ def ping(bot: Bot, update: Update):
     start_time = time.time()
     requests.get('https://api.telegram.org')
     end_time = time.time()
-    ping_time = float(end_time - start_time)*1000
+    ping_time = round(float(end_time - start_time)*1000, 2)
     update.effective_message.reply_text(" Ping speed was : {}ms".format(ping_time))
 
 
@@ -455,37 +456,37 @@ __help__ = """
  - /time <place>: gives the local time at the given place.
  - /info: get information about a user.
  - /gdpr: deletes your information from the bot's database. Private chats only.
+ - /ping: pings api.telegram.org and returns time. Private chats only.
+ - /gps <place>: gives a google maps link to the given place.
 
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
 """
 
 __mod_name__ = "Misc"
 
-ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
-IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
 
-TIME_HANDLER = CommandHandler("time", get_time, pass_args=True)
-
-RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
-SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
-INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
-
-PING_HANDLER = DisableAbleCommandHandler("ping", ping)
 ECHO_HANDLER = CommandHandler("echo", echo, filters=CustomFilters.sudo_filter | CustomFilters.secret_sudo_filter)
-MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
-
-STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter | CustomFilters.secret_sudo_filter)
 GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
 GPS_HANDLER = DisableAbleCommandHandler("gps", gps, pass_args=True)
+ID_HANDLER = DisableAbleCommandHandler("id", get_id, pass_args=True)
+INFO_HANDLER = DisableAbleCommandHandler("info", info, pass_args=True)
+IP_HANDLER = CommandHandler("ip", get_bot_ip, filters=Filters.chat(OWNER_ID))
+MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, filters=Filters.private)
+PING_HANDLER = DisableAbleCommandHandler("ping", ping, filters=Filters.private)
+RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
+SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, pass_args=True)
+STATS_HANDLER = CommandHandler("stats", stats, filters=CustomFilters.sudo_filter | CustomFilters.secret_sudo_filter)
+TIME_HANDLER = CommandHandler("time", get_time, pass_args=True)
 
-dispatcher.add_handler(ID_HANDLER)
-dispatcher.add_handler(IP_HANDLER)
-dispatcher.add_handler(TIME_HANDLER)
-dispatcher.add_handler(RUNS_HANDLER)
-dispatcher.add_handler(SLAP_HANDLER)
-dispatcher.add_handler(INFO_HANDLER)
 dispatcher.add_handler(ECHO_HANDLER)
-dispatcher.add_handler(MD_HELP_HANDLER)
-dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(GDPR_HANDLER)
 dispatcher.add_handler(GPS_HANDLER)
+dispatcher.add_handler(ID_HANDLER)
+dispatcher.add_handler(INFO_HANDLER)
+dispatcher.add_handler(IP_HANDLER)
+dispatcher.add_handler(MD_HELP_HANDLER)
+dispatcher.add_handler(PING_HANDLER)
+dispatcher.add_handler(RUNS_HANDLER)
+dispatcher.add_handler(SLAP_HANDLER)
+dispatcher.add_handler(STATS_HANDLER)
+dispatcher.add_handler(TIME_HANDLER)
