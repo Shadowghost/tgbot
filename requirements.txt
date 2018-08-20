@@ -20,3 +20,5 @@ lxml
 pyowm
 spongemock
 geopy
+gsearch
+googletrans
