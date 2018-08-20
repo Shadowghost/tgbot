@@ -28,6 +28,8 @@ python-telegram-bot library, and am fully opensource - you can find what makes m
 Feel free to submit pull requests on github, or to contact my maintainer.
 
 You can find the list of available commands with /help.
+
+[Click here to add me in your groups](https://telegram.me/CuttingEdgeBot?startgroup=add)
 """
 
 HELP_STRINGS = """
@@ -142,7 +144,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text("Yo, whadup?")
+        update.effective_message.reply_text("I am still alive. If you have a problem with that, challenge me :)")
 
 
 # for test purposes
