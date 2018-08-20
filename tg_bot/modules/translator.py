@@ -2,7 +2,7 @@ from telegram import Message, Update, Bot, User
 from telegram.ext import Filters, MessageHandler, run_async
 
 from requests import get
-from googletrans impor Translator
+from googletrans import Translator
 from tg_bot.modules.disable import DisableAbleCommandHandler
 from tg_bot import dispatcher
 
@@ -16,6 +16,6 @@ def translate(bot: Bot, update: Update):
   
   message.reply_to_message.reply_text(reply_text)
 
-  translate_handler = DisableAbleCommandHandler("translate", translate)
+translate_handler = DisableAbleCommandHandler("translate", translate)
 
 dispatcher.add_handler(translate_handler)

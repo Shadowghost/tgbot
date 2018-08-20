@@ -107,9 +107,7 @@ else:
     BAN_STICKER = Config.BAN_STICKER
     ALLOW_EXCL = Config.ALLOW_EXCL
     STRICT_GMUTE = Config.STRICT_GMUTE
-
-
-	
+    API_WEATHER = Config.API_WEATHER
 	
 SUDO_USERS.add(OWNER_ID)
 import tg_bot.modules.sql.gpromote_sql as gpromote_sql

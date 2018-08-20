@@ -24,11 +24,7 @@ class Config(object):
 
     # OPTIONAL
     SUDO_USERS = []  # List of id's (not usernames) for users which have sudo access to the bot.
-<<<<<<< HEAD
-	SECRET_SUDO_USERS = [] # List of id's (not usernames) for users which can gban/ungban gmute/ungmute stats/chatlist gbanlist/gmutelist but are no globa admins.
-=======
-    SECRET_SUDO_USERS = [] # List of id's (not usernames) for users which have sudo acces to bot but secretely.
->>>>>>> f9876e6... Introducing secret sudo users
+    SECRET_SUDO_USERS = [] # List of id's (not usernames) for users which can gban/ungban gmute/ungmute stats/chatlist gbanlist/gmutelist but are no global admins (secret sudo access).
     SUPPORT_USERS = []  # List of id's (not usernames) for users which are allowed to gban, but can also be banned.
     WHITELIST_USERS = []  # List of id's (not usernames) for users which WONT be banned/kicked by the bot.
     DONATION_LINK = None  # EG, paypal
@@ -39,6 +35,7 @@ class Config(object):
     WORKERS = 8  # Number of subthreads to use. This is the recommended amount - see for yourself what works best!
     BAN_STICKER = 'CAADAgADOwADPPEcAXkko5EB3YGYAg'  # banhammer marie sticker
     ALLOW_EXCL = False  # Allow ! commands as well as /
+    API_WEATHER = "YOUR KEY HERE" # Insert API key from https://home.openweathermap.org 
 
 
 class Production(Config):
