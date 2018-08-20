@@ -11,7 +11,5 @@ __help__ = """
  - /wiki: Query the Wikipedia
  """
 __mod_name__ = "Wikipedia Search"
-
-GOOGLE_HANDLER = DisableAbleCommandHandler("wiki", google)
-
+GOOGLE_HANDLER = DisableAbleCommandHandler("wiki", wiki)
 dispatcher.add_handler(GOOGLE_HANDLER)
