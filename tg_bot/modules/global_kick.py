@@ -49,7 +49,7 @@ def gkick(bot: Bot, update: Update, args: List[str]):
         message.reply_text("OHHH! Someone's trying to gkick a sudo/support user! *Grabs popcorn*")
         return
     if int(user_id) in SECRET_SUDO_USERS:
-        message.reply_text("Sar He is a secret sudo user *Grabs Ak47*")
+        message.reply_text("This user is a secret sudo user *Grabs Ak47*")
         return
     if int(user_id) == OWNER_ID:
         message.reply_text("Wow! Someone's so noob that he want to gkick my owner! *Grabs Potato Chips*")
