@@ -20,6 +20,7 @@ from tg_bot.modules.helper_funcs.extraction import extract_user
 from tg_bot.modules.helper_funcs.filters import CustomFilters
 from zalgo_text import zalgo    
 
+
 def zal(bot: Bot, update: Update, args):
     current_time = datetime.strftime(datetime.now(), "%d.%m.%Y %H:%M:%S")
     if update.message.reply_to_message is not None:
@@ -31,5 +32,6 @@ def zal(bot: Bot, update: Update, args):
         return
     zalgofied_text = zalgo.zalgo().zalgofy(input_text)
     update.message.reply_text(zalgofied_text)
+
 
 dispatcher.add_handler(CommandHandler('zal', zal, pass_args=True))

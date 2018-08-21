@@ -32,11 +32,12 @@ def getsticker(bot: Bot, update: Update):
     else:
         update.effective_message.reply_text("Please reply to a sticker for me to upload its PNG.")
 
-# /ip is for private use
+
 __help__ = """
  - /stickerid: reply to a sticker to me to tell you its file ID.
  - /getsticker: reply to a sticker to me to upload its raw PNG file.
 """
+
 
 __mod_name__ = "Stickers"
 

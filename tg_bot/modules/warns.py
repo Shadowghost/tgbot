@@ -54,13 +54,14 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
         keyboard = []
         log_reason = "<b>{}:</b>" \
                      "\n#WARN_BAN" \
-                     "\n<b>Admin:</b> {}" \
-                     "\n<b>User:</b> {}" \
-                     "\n<b>Reason:</b> {}"\
-                     "\n<b>Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
-                                                                  warner_tag,
-                                                                  mention_html(user.id, user.first_name), 
-                                                                  reason, num_warns, limit)
+                     "\n<b>• Admin:</b> {}" \
+                     "\n<b>• User:</b> {}" \
+                     "\n<b>• ID:</b> <code>{}</code>" \
+                     "\n<b>• Reason:</b> {}"\
+                     "\n<b>• Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
+                                                                    warner_tag,
+                                                                    mention_html(user.id, user.first_name), 
+                                                                    reason, num_warns, limit)
 
     else:
         keyboard = InlineKeyboardMarkup(
@@ -73,13 +74,14 @@ def warn(user: User, chat: Chat, reason: str, message: Message, warner: User = N
 
         log_reason = "<b>{}:</b>" \
                      "\n#WARN" \
-                     "\n<b>Admin:</b> {}" \
-                     "\n<b>User:</b> {}" \
-                     "\n<b>Reason:</b> {}"\
-                     "\n<b>Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
-                                                                  warner_tag,
-                                                                  mention_html(user.id, user.first_name), 
-                                                                  reason, num_warns, limit)
+                     "\n<b>• Admin:</b> {}" \
+                     "\n<b>• User:</b> {}" \
+                     "\n<b>• ID:</b> <code>{}</code>" \
+                     "\n<b>• Reason:</b> {}"\
+                     "\n<b>• Counts:</b> <code>{}/{}</code>".format(html.escape(chat.title),
+                                                                    warner_tag,
+                                                                    mention_html(user.id, user.first_name), 
+                                                                    reason, num_warns, limit)
 
     try:
         message.reply_text(reply, reply_markup=keyboard, parse_mode=ParseMode.HTML)
@@ -113,10 +115,12 @@ def button(bot: Bot, update: Update) -> str:
             user_member = chat.get_member(user_id)
             return "<b>{}:</b>" \
                    "\n#UNWARN" \
-                   "\n<b>Admin:</b> {}" \
-                   "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                              mention_html(user.id, user.first_name),
-                                              mention_html(user_member.user.id, user_member.user.first_name))
+                   "\n<b>• Admin:</b> {}" \
+                   "\n<b>• User:</b> {}" \
+                   "\n<b>• ID:</b> <code>{}</code>".format(html.escape(chat.title),
+                                                       mention_html(user.id, user.first_name),
+                                                       mention_html(warned.id, warned.first_name),
+                                                       warned.id)
         else:
             update.effective_message.edit_text(
                 "User has already has no warns.".format(mention_html(user.id, user.first_name)),
@@ -163,10 +167,10 @@ def reset_warns(bot: Bot, update: Update, args: List[str]) -> str:
         warned = chat.get_member(user_id).user
         return "<b>{}:</b>" \
                "\n#RESETWARNS" \
-               "\n<b>Admin:</b> {}" \
-               "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                          mention_html(user.id, user.first_name),
-                                          mention_html(warned.id, warned.first_name))
+               "\n<b>• Admin:</b> {}" \
+               "\n<b>• User:</b> {}".format(html.escape(chat.title),
+                                            mention_html(user.id, user.first_name),
+                                            mention_html(warned.id, warned.first_name))
     else:
         message.reply_text("No user has been designated!")
     return ""
@@ -321,7 +325,7 @@ def set_warn_limit(bot: Bot, update: Update, args: List[str]) -> str:
                 msg.reply_text("Updated the warn limit to {}".format(args[0]))
                 return "<b>{}:</b>" \
                        "\n#SET_WARN_LIMIT" \
-                       "\n<b>Admin:</b> {}" \
+                       "\n<b>• Admin:</b> {}" \
                        "\nSet the warn limit to <code>{}</code>".format(html.escape(chat.title),
                                                                         mention_html(user.id, user.first_name), args[0])
         else:
@@ -345,7 +349,7 @@ def set_warn_strength(bot: Bot, update: Update, args: List[str]):
             sql.set_warn_strength(chat.id, False)
             msg.reply_text("Too many warns will now result in a ban!")
             return "<b>{}:</b>\n" \
-                   "<b>Admin:</b> {}\n" \
+                   "<b>• Admin:</b> {}\n" \
                    "Has enabled strong warns. Users will be banned.".format(html.escape(chat.title),
                                                                             mention_html(user.id, user.first_name))
 
@@ -353,7 +357,7 @@ def set_warn_strength(bot: Bot, update: Update, args: List[str]):
             sql.set_warn_strength(chat.id, True)
             msg.reply_text("Too many warns will now result in a kick! Users will be able to join again after.")
             return "<b>{}:</b>\n" \
-                   "<b>Admin:</b> {}\n" \
+                   "<b>• Admin:</b> {}\n" \
                    "Has disabled strong warns. Users will only be kicked.".format(html.escape(chat.title),
                                                                                   mention_html(user.id,
                                                                                                user.first_name))
@@ -407,6 +411,7 @@ be a sentence, encompass it with quotes, as such: `/addwarn "very angry" This is
  - /warnlimit <num>: set the warning limit
  - /strongwarn <on/yes/off/no>: If set to on, exceeding the warn limit will result in a ban. Else, will just kick.
 """
+
 
 __mod_name__ = "Warnings"
 

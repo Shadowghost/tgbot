@@ -202,30 +202,36 @@ TOSS = (
     "Tails",
 )
 
+
 @run_async
 def roll(bot: Bot, update: Update):
     update.message.reply_text(random.choice(range(1, 7)))
-	
+
+
 def toss(bot: Bot, update: Update):
     update.message.reply_text(random.choice(TOSS))
+
 
 @run_async
 def abuse(bot: Bot, update: Update):
     # reply to correct message
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text(random.choice(ABUSE_STRINGS))
-	
+
+
 @run_async
 def shrug(bot: Bot, update: Update):
     # reply to correct message
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text("¯\_(ツ)_/¯")	
-	
+
+
 @run_async
 def bluetext(bot: Bot, update: Update):
     # reply to correct message
     reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
     reply_text("BLUE TEXT\n MUST CLICK\n I AM A STUPID ANIMAL THAT IS ATTRACTED TO COLORS")		
+
 
 @run_async
 def rlg(bot: Bot, update: Update):
@@ -235,7 +241,8 @@ def rlg(bot: Bot, update: Update):
     ears = random.choice(EARS)
     repl = format(ears + eyes + mouth + eyes + ears)
     update.message.reply_text(repl)
-	
+
+
 def decide(bot: Bot, update: Update):
         r = randint(1, 100)
         if r <= 65:
@@ -244,7 +251,8 @@ def decide(bot: Bot, update: Update):
             update.message.reply_text("NoU.")
         else:
             update.message.reply_text("Maybe.")
-            
+
+
 __help__ = """
  - /shrug : get shrug XD.
  - /table : get flip/unflip :v.
@@ -256,8 +264,8 @@ __help__ = """
  - /roll : Roll a dice.
  - /rlg : Join ears,nose,mouth and create an emo ;-;
  - /zal <any text> : zalgofy! your text
- Lyrics Plugin will take some moar time to come up.
 """
+
 
 __mod_name__ = "Extras"
 

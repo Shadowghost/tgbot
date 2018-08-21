@@ -69,5 +69,6 @@ def ungsupport(bot: Bot, update: Update, args: List[str]):
 
 GSUPPORT_HANDLER = CommandHandler("gsupport", gsupport, pass_args=True, filters=Filters.user(OWNER_ID))
 UNGSUPPORT_HANDLER = CommandHandler("ungsupport", ungsupport, pass_args=True, filters=Filters.user(OWNER_ID))
+
 dispatcher.add_handler(GSUPPORT_HANDLER)
 dispatcher.add_handler(UNGSUPPORT_HANDLER)

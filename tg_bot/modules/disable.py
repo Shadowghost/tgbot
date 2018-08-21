@@ -146,8 +146,6 @@ if is_module_loaded(FILENAME):
         return build_curr_disabled(chat_id)
 
 
-    __mod_name__ = "Command disabling"
-
     __help__ = """
  - /cmds: check the current status of disabled commands
 
@@ -156,6 +154,9 @@ if is_module_loaded(FILENAME):
  - /disable <cmd name>: disable that command
  - /listcmds: list all possible toggleable commands
     """
+
+
+    __mod_name__ = "Command disabling"
 
     DISABLE_HANDLER = CommandHandler("disable", disable, pass_args=True, filters=Filters.group)
     ENABLE_HANDLER = CommandHandler("enable", enable, pass_args=True, filters=Filters.group)

@@ -27,6 +27,7 @@ GKICK_ERRORS = {
     "Reply message not found"
 }
 
+
 @run_async
 def gkick(bot: Bot, update: Update, args: List[str]):
     message = update.effective_message
@@ -73,4 +74,5 @@ def gkick(bot: Bot, update: Update, args: List[str]):
 
 GKICK_HANDLER = CommandHandler("gkick", gkick, pass_args=True,
                               filters=CustomFilters.sudo_filter | CustomFilters.support_filter | CustomFilters.secret_sudo_filter)
+
 dispatcher.add_handler(GKICK_HANDLER)                              

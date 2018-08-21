@@ -56,10 +56,10 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
     message.reply_text("Successfully promoted!")
     return "<b>{}:</b>" \
            "\n#PROMOTED" \
-           "\n<b>Admin:</b> {}" \
-           "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                      mention_html(user.id, user.first_name),
-                                      mention_html(user_member.user.id, user_member.user.first_name))
+           "\n<b>• Admin:</b> {}" \
+           "\n<b>• User:</b> {}".format(html.escape(chat.title),
+                                        mention_html(user.id, user.first_name),
+                                        mention_html(user_member.user.id, user_member.user.first_name))
 
 
 @run_async
@@ -103,10 +103,10 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
         message.reply_text("Successfully demoted!")
         return "<b>{}:</b>" \
                "\n#DEMOTED" \
-               "\n<b>Admin:</b> {}" \
-               "\n<b>User:</b> {}".format(html.escape(chat.title),
-                                          mention_html(user.id, user.first_name),
-                                          mention_html(user_member.user.id, user_member.user.first_name))
+               "\n<b>• Admin:</b> {}" \
+               "\n<b>• User:</b> {}".format(html.escape(chat.title),
+                                            mention_html(user.id, user.first_name),
+                                            mention_html(user_member.user.id, user_member.user.first_name))
 
     except BadRequest:
         message.reply_text("Could not demote. I might not be admin, or the admin status was appointed by another "
@@ -141,7 +141,7 @@ def pin(bot: Bot, update: Update, args: List[str]) -> str:
                 raise
         return "<b>{}:</b>" \
                "\n#PINNED" \
-               "\n<b>Admin:</b> {}".format(html.escape(chat.title), mention_html(user.id, user.first_name))
+               "\n<b>• Admin:</b> {}".format(html.escape(chat.title), mention_html(user.id, user.first_name))
 
     return ""
 
@@ -165,8 +165,8 @@ def unpin(bot: Bot, update: Update) -> str:
 
     return "<b>{}:</b>" \
            "\n#UNPINNED" \
-           "\n<b>Admin:</b> {}".format(html.escape(chat.title),
-                                       mention_html(user.id, user.first_name))
+           "\n<b>• Admin:</b> {}".format(html.escape(chat.title),
+                                         mention_html(user.id, user.first_name))
 
 
 @run_async
@@ -210,8 +210,8 @@ def adminlist(bot: Bot, update: Update):
             text += "\n` â€¢ `{}".format(name)
 
     update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
-    
-    
+
+
 def __chat_settings__(chat_id, user_id):
     return "You are *admin*: `{}`".format(
         dispatcher.bot.get_chat_member(chat_id, user_id).status in ("administrator", "creator"))
@@ -228,16 +228,14 @@ __help__ = """
  - /demote: demotes the user replied to
 """
 
+
 __mod_name__ = "Admin"
 
 PIN_HANDLER = CommandHandler("pin", pin, pass_args=True, filters=Filters.group)
 UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
-
 INVITE_HANDLER = CommandHandler("invitelink", invite, filters=Filters.group)
-
 PROMOTE_HANDLER = CommandHandler("promote", promote, pass_args=True, filters=Filters.group)
 DEMOTE_HANDLER = CommandHandler("demote", demote, pass_args=True, filters=Filters.group)
-
 ADMINLIST_HANDLER = DisableAbleCommandHandler("adminlist", adminlist, filters=Filters.group)
 
 dispatcher.add_handler(PIN_HANDLER)

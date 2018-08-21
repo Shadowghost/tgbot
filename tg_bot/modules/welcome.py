@@ -109,6 +109,8 @@ def del_joined(bot: Bot, update: Update, args: List[str]) -> str:
         # idek what you're writing, say yes or no
         update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
         return ""
+
+
 @run_async
 def delete_join(bot: Bot, update: Update):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -562,6 +564,7 @@ __help__ = """
 
  - /welcomehelp: view more formatting information for custom welcome/goodbye messages.
 """.format(WELC_HELP_TXT)
+
 
 __mod_name__ = "Welcomes/Goodbyes"
 

@@ -65,6 +65,7 @@ def reply_afk(bot: Bot, update: Update):
         fst_name = message.reply_to_message.from_user.first_name
         check_afk(bot, update, user_id, fst_name)
 
+
 def check_afk(bot, update, user_id, fst_name):
     if sql.is_afk(user_id):
         user = sql.check_afk_status(user_id)
@@ -75,13 +76,13 @@ def check_afk(bot, update, user_id, fst_name):
         update.effective_message.reply_text(res)
 
 
-
 __help__ = """
  - /afk <reason>: mark yourself as AFK.
  - brb <reason>: same as the afk command - but not a command.
 
 When marked as AFK, any mentions will be replied to with a message to say you're not available!
 """
+
 
 __mod_name__ = "AFK"
 

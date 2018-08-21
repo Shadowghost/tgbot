@@ -6,6 +6,7 @@ from telegram.utils.helpers import mention_html
 from tg_bot import dispatcher, OWNER_ID, SUPPORT_USERS
 import tg_bot.modules.sql.gsupport_sql as sql
 
+
 @run_async
 def listsupport(bot: Bot, update: Update):
     chat = update.effective_chat
@@ -18,6 +19,9 @@ def listsupport(bot: Bot, update: Update):
     message.reply_text("<b>SUPPORT USERS:</b> {}\n".format(html.escape(reply_msg)), parse_mode=ParseMode.HTML)
     return
 
+
 __mod_name__ = "Support users"
+
 SUPPORT_HANDLER = CommandHandler("listsupport", listsupport)
+
 dispatcher.add_handler(SUPPORT_HANDLER)

@@ -448,6 +448,7 @@ def gps(bot: Bot, update: Update, args: List[str]):
     except AttributeError:
         update.message.reply_text("I can't find that")
 
+
 # /ip is for private use
 __help__ = """
  - /id: get the current group id. If used by replying to a message, gets that user's id.
@@ -461,6 +462,7 @@ __help__ = """
 
  - /markdownhelp: quick summary of how markdown works in telegram - can only be called in private chats.
 """
+
 
 __mod_name__ = "Misc"
 

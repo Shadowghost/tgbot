@@ -6,6 +6,7 @@ from telegram.ext import run_async
 from tg_bot import dispatcher, updater, API_WEATHER
 from tg_bot.modules.disable import DisableAbleCommandHandler
 
+
 @run_async
 def weather(bot, update, args):
     if len(args) == 0:
@@ -64,6 +65,7 @@ def weather(bot, update, args):
 __help__ = """
  - /weather <city>: get weather info in a particular place
 """
+
 
 __mod_name__ = "Weather"
 

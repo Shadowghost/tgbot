@@ -52,6 +52,7 @@ def rem_cmds(bot: Bot, update: Update, args: List[str]) -> str:
         update.effective_message.reply_text("I understand 'on/yes' or 'off/no' only!")
         return ""
 
+
 @run_async
 def rem_slash_commands(bot: Bot, update: Update) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -69,6 +70,7 @@ __help__ = """
 I remove messages starting with a /command in groups and supergroups.
 - /rmcmd <on/off>: when someone tries to send a @BlueTextBot message, I will try to delete that!
 """
+
 
 __mod_name__ = "anticommand"
 

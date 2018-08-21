@@ -66,5 +66,6 @@ def ungpromote(bot: Bot, update: Update, args: List[str]):
 
 GPROMOTE_HANDLER = CommandHandler("gpromote", gpromote, pass_args=True, filters=Filters.user(OWNER_ID))
 UNGPROMOTE_HANDLER = CommandHandler("gdemote", ungpromote, pass_args=True, filters=Filters.user(OWNER_ID))
+
 dispatcher.add_handler(GPROMOTE_HANDLER)
 dispatcher.add_handler(UNGPROMOTE_HANDLER)

@@ -265,6 +265,7 @@ def enforce_gmute(bot: Bot, update: Update):
             if user and not is_user_admin(chat, user.id):
                 check_and_mute(bot, update, user.id, should_message=True)
 
+
 @run_async
 @user_admin
 def gmutestat(bot: Bot, update: Update, args: List[str]):
@@ -320,6 +321,7 @@ you and your groups by removing spam flooders as quickly as possible. They can b
 /gmutestat
 """
 
+
 __mod_name__ = "Global Mutes"
 
 GMUTE_HANDLER = CommandHandler("gmute", gmute, pass_args=True,
@@ -328,9 +330,7 @@ UNGMUTE_HANDLER = CommandHandler("ungmute", ungmute, pass_args=True,
                                 filters=CustomFilters.sudo_filter | CustomFilters.support_filter | CustomFilters.secret_sudo_filter)
 GMUTE_LIST = CommandHandler("gmutelist", gmutelist,
                            filters=CustomFilters.sudo_filter | CustomFilters.support_filter | CustomFilters.secret_sudo_filter)
-
 GMUTE_STATUS = CommandHandler("gmutestat", gmutestat, pass_args=True, filters=Filters.group)
-
 GMUTE_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gmute)
 
 dispatcher.add_handler(GMUTE_HANDLER)

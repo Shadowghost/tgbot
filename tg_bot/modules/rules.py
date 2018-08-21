@@ -102,6 +102,7 @@ __help__ = """
  - /clearrules: clear the rules for this chat.
 """
 
+
 __mod_name__ = "Rules"
 
 GET_RULES_HANDLER = DisableAbleCommandHandler("rules", get_rules, filters=Filters.group)

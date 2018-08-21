@@ -83,6 +83,7 @@ RUNMUTE_ERRORS = {
     "Not in the chat"
 }
 
+
 @run_async
 @bot_admin
 def rban(bot: Bot, update: Update, args: List[str]):
@@ -149,6 +150,7 @@ def rban(bot: Bot, update: Update, args: List[str]):
             LOGGER.exception("ERROR banning user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
             message.reply_text("Well damn, I can't ban that user.")
+
 
 @run_async
 @bot_admin
@@ -217,6 +219,7 @@ def runban(bot: Bot, update: Update, args: List[str]):
                              excp.message)
             message.reply_text("Well damn, I can't unban that user.")
 
+
 @run_async
 @bot_admin
 def rkick(bot: Bot, update: Update, args: List[str]):
@@ -284,6 +287,7 @@ def rkick(bot: Bot, update: Update, args: List[str]):
                              excp.message)
             message.reply_text("Well damn, I can't kick that user.")
 
+
 @run_async
 @bot_admin
 def rmute(bot: Bot, update: Update, args: List[str]):
@@ -350,6 +354,7 @@ def rmute(bot: Bot, update: Update, args: List[str]):
             LOGGER.exception("ERROR mute user %s in chat %s (%s) due to %s", user_id, chat.title, chat.id,
                              excp.message)
             message.reply_text("Well damn, I can't mute that user.")
+
 
 @run_async
 @bot_admin
@@ -424,7 +429,6 @@ def runmute(bot: Bot, update: Update, args: List[str]):
                              excp.message)
             message.reply_text("Well damn, I can't unmute that user.")
 
-__help__ = ""
 
 __mod_name__ = "Remote Commands"
 
