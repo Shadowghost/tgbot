@@ -30,20 +30,6 @@ def quickscope(bot: Bot, update: Update, args: List[int]):
 
 
 @run_async
-def quickunban(bot: Bot, update: Update, args: List[int]):
-    if args:
-        chat_id = str(args[1])
-        to_kick = str(args[0])
-    else:
-        update.effective_message.reply_text("You don't seem to be referring to a chat/user")
-    try:
-        bot.unban_chat_member(chat_id, to_kick)
-        update.effective_message.reply_text("Attempted unbanning " + to_kick + " from" + chat_id)
-    except BadRequest as excp:
-        update.effective_message.reply_text(excp.message + " " + to_kick)
-
-
-@run_async
 def banall(bot: Bot, update: Update, args: List[int]):
     if args:
         chat_id = str(args[0])
@@ -104,31 +90,30 @@ def leavechat(bot: Bot, update: Update, args: List[int]):
 
 __help__ = """  
 *Owner only:*
-- /getlink *chatid*: Get the invite link for a specific chat.
-- /banall: Ban all members from a chat
-- /leavechat *chatid : leave a chat
+- /getlink <chatid>: get the invite link for a specific chat
+- /banall: ban all members from a chat
+- /leavechat <chatid>: leave a chat
 *Sudo/owner only:*
-- /quickscope *chatid* *userid*: Ban user from chat.
-- /quickunban *chatid* *userid*: Unban user from chat.
-- /snipe *chatid* *string*: Make me send a message to a specific chat.
-- /rban *chatid* *userid" remotely ban a user from a chat
-- /runban *chatid* *userid* remotely unban a user from a chat
-- /mute *chatid* *userid" remotely mute a user from a chat
-- /runmute *chatid* *userid* remotely unmute a user from a chat
-- /rkick *chatid* *userid" remotely kick a user from a chat
+- /quickscope <chatid> <userid>: ban user from chat
+- /snipe <chatid> <string>: make me send a message to a specific chat
+- /rban <userid> <chatid>: remotely ban a user from a chat
+- /runban <userid> <chatid>: remotely unban a user from a chat
+- /mute <userid> <chatid>: remotely mute a user from a chat
+- /runmute <userid> <chatid>: remotely unmute a user from a chat
+- /rkick <userid> <chatid>: remotely kick a user from a chat
 - /stats: check bot's stats
 - /chatlist: get chatlist 
 - /gbanlist: get gbanned users list
 - /gmutelist: get gmuted users list
-- /gsupport *userid*: make a user global supporter user
-- /ungsupport *userid*: remove a user from global supporters
-- /gpromote *userid*: make a user global sudo user
-- /ungpromote *userid*: remove a user from global suoders
+- /gsupport <userid>: make a user global supporter user
+- /ungsupport <userid>: remove a user from global supporters
+- /gpromote <userid>: make a user global sudo user
+- /ungpromote <userid>: remove a user from global suoders
 *Support user:*
-- /gban : global ban a user
-- /ungban : ungban a user
-- /gmute : global mute a user
-- /ungmute : ungmute a user
+- /gban: global ban a user
+- /ungban: ungban a user
+- /gmute: global mute a user
+- /ungmute: ungmute a user
 Sudo/owner can use these commands too.
 *Users:*
 - /listsudo: gives a list of sudo users
