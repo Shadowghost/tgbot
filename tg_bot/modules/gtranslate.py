@@ -1,8 +1,8 @@
 from typing import Optional, List
 from googletrans import Translator
 
-from telegram import Message, Update, Bot, User, ParseMode, MessageEntity
-from telegram.ext import CommandHandler, run_async, Filters, MessageHandler
+from telegram import Update, Bot, ParseMode
+from telegram.ext import run_async
 
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
@@ -15,8 +15,8 @@ def gtranslate(bot: Bot, update: Update, args: List[str]):
 
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
 
-    if len(args) == 0 and msg.reply_to_message.text == None :
-        update.effective_message.reply_text("Write something to translate.")
+    if len(args) == 0 and msg.reply_to_message == None :
+        reply_text("Write or quote something to translate.")
         return
 
     elif len(args) >= 1:
@@ -29,7 +29,8 @@ def gtranslate(bot: Bot, update: Update, args: List[str]):
         try:
             trans = translator.translate(text[1], dest=text[0]).text
         except ValueError as e:
-            return reply_text("Language %s not found :(" % text[0], quote=True, failed=True)
+            reply_text("Language _%s_ not found :(" % text[0], parse_mode=ParseMode.MARKDOWN, quote=True, failed=True)
+            return
 
     else:
         trans = translator.translate(text[0], dest='en').text
