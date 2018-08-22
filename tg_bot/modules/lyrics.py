@@ -14,9 +14,18 @@ LYRICSINFO = "\n\n[Full Lyrics](http://lyrics.wikia.com/wiki/%s:%s)"
 @run_async
 def lyrics(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message
-    song = " ".join(args).split(" - ")
 
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+
+    if len(args) == 0 and msg.reply_to_message.text == None :
+        msg.reply_text("Invalid syntax - correct syntax:  `/lyrics Artist - Song` or quote", parse_mode=ParseMode.MARKDOWN, quote=True, failed=True)
+        return
+
+    elif len(args) >= 1:
+        song = " ".join(args).split(" - ")
+
+    elif msg.reply_to_message.text != None:
+        song = msg.reply_to_message.text.split(" - ")
 
     if len(song) == 2:
         while song[1].startswith(" "):
