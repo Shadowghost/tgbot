@@ -1,8 +1,8 @@
 from typing import Optional, List
 import wikipedia
 
-from telegram import Message, Update, Bot, User, ParseMode, MessageEntity
-from telegram.ext import CommandHandler, run_async, Filters, MessageHandler
+from telegram import Update, Bot, ParseMode
+from telegram.ext import run_async
 
 from tg_bot import dispatcher
 from tg_bot.modules.disable import DisableAbleCommandHandler
@@ -14,8 +14,8 @@ def wiki(bot: Bot, update: Update, args: List[str]):
 
     reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
 
-    if len(args) == 0 and msg.reply_to_message.text == None :
-        msg.reply_text("Write something you want to look up.")
+    if len(args) == 0 and msg.reply_to_message == None :
+        reply_text("Write something you want to look up.")
         return
 
     elif len(args) >= 1:
