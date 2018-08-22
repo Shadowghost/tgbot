@@ -1,4 +1,3 @@
-import html
 from typing import Optional, List
 from googletrans import Translator
 
@@ -14,26 +13,36 @@ def gtranslate(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
     translator = Translator()
 
+    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+
     if len(args) == 0 and msg.reply_to_message.text == None :
         update.effective_message.reply_text("Write something to translate.")
         return
 
     elif len(args) >= 1:
-        text = " ".join(args)
+        text = " ".join(args).split(" - ")
 
     elif msg.reply_to_message.text != None:
-        text = msg.reply_to_message.text
+        text = msg.reply_to_message.text.split(" - ")
 
-    trans = translator.translate(text, dest='en').text
-    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    if len(text) == 2:
+        try:
+            trans = translator.translate(text[1], dest=text[0]).text
+        except ValueError as e:
+            return reply_text("Language %s not found :(" % text[0], quote=True, failed=True)
 
-    repl = "<b>Translation:</b> {}".format(html.escape(trans))
+    else:
+        trans = translator.translate(text[0], dest='en').text
 
-    reply_text(repl, parse_mode=ParseMode.HTML, quote=True)
+    repl = "*Translation:* {}".format(trans)
+
+    reply_text(repl, parse_mode=ParseMode.MARKDOWN, quote=True)
 
 
 __help__ = """
- - /gtranslate <string>: Type a string of words you want to translate to English. You can also quote a message instead.
+ - /gtranslate <lang> - <string>:
+Type a string of words you want to translate. You can also quote a message instead.
+<lang> parameter is optional, default value is *en* for English.
 """
 
 
