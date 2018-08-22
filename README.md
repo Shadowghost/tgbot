@@ -1,19 +1,15 @@
 # tgbot
-A modular telegram Python bot running on python3 with an sqlalchemy database.
+A modular *Telegram Python bot* running on `python3` with an `sqlalchemy` database.
 
-Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and 
-simple to use.
+Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and simple to use.
 
-Can be found on telegram as [Marie](https://t.me/BanhammerMarie_bot).
+Can be found on telegram as [Kate](https://t.me/CuttingEdgeBot).
 
-Marie and I are moderating a [support group](https://t.me/MarieSupport), where you can ask for help setting up your
-bot, discover/request new features, report bugs, and stay in the loop whenever a new update is available. Of course
-I'll also help when a database schema changes, and some table column needs to be modified/added. Note to maintainers that all schema changes will be found in the commit messages, and its their responsibility to read any new commits.
+Kate and I are moderating a [group](https://t.me/Bitwrk), where you can ask for help setting up your bot, discover/request new features, report bugs, and stay in the loop whenever a new update is available. Of course I'll also help when a database schema changes, and some table column needs to be modified/added. Note to maintainers that all schema changes will be found in the commit messages, and its their responsibility to read any new commits.
 
-Join the [news channel](https://t.me/MarieNews) if you just want to stay in the loop about new features or
-announcements.
+Alternatively, [find me on Telegram](https://t.me/Wick3dPhant0m)!
 
-Alternatively, [find me on telegram](https://t.me/SonOfLars)! (Keep all support questions in the support chat, where more people can help you.)
+Keep all support questions in the main chat (as long as it's rules don't state something else), where more people can help you.
 
 ## Starting the bot.
 
@@ -80,6 +76,7 @@ The following env variables are supported:
  - `PORT`: Port to use for your webhooks
  - `DEL_CMDS`: Whether to delete commands from users which don't have rights to use that command
  - `STRICT_GBAN`: Enforce gbans across new groups as well as old groups. When a gbanned user talks, he will be banned.
+ - `STRICT_GMUTE`: Enforce gmutes across new groups as well as old groups. When a gmuted user talks, he will be muted.
  - `WORKERS`: Number of threads to use. 8 is the recommended (and default) amount, but your experience may vary.
  __Note__ that going crazy with more threads wont necessarily speed up your bot, given the large amount of sql data 
  accesses, and the way python asynchronous calls work.
@@ -97,7 +94,7 @@ This will install all necessary python packages.
 ### Database
 
 If you wish to use a database-dependent module (eg: locks, notes, userinfo, users, filters, welcomes),
-you'll need to have a database installed on your system. I use postgres, so I recommend using it for optimal compatibility.
+you'll need to have a postgres database installed on your system.
 
 In the case of postgres, this is how you would set up a the database on a debian/ubuntu system. Other distributions may vary.
 
@@ -130,10 +127,8 @@ By default, YOUR_HOST should be 0.0.0.0:5432.
 
 You should now be able to build your database URI. This will be:
 
-`sqldbtype://username:pw@hostname:port/db_name`
+`postgres://username:pw@localhost:5432/db_name`
 
-Replace sqldbtype with whichever db youre using (eg postgres, mysql, sqllite, etc)
-repeat for your username, password, hostname (localhost?), port (5432?), and db name.
 
 ## Modules
 ### Setting load order.
