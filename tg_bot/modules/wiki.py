@@ -1,4 +1,3 @@
-import html
 from typing import Optional, List
 import wikipedia
 
@@ -13,34 +12,54 @@ from tg_bot.modules.disable import DisableAbleCommandHandler
 def wiki(bot: Bot, update: Update, args: List[str]):
     msg = update.effective_message  # type: Optional[Message]
 
+    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+
     if len(args) == 0 and msg.reply_to_message.text == None :
-        update.effective_message.reply_text("Write something you want to look up.")
+        msg.reply_text("Write something you want to look up.")
         return
 
     elif len(args) >= 1:
-        text = " ".join(args)
+        text = " ".join(args).split(" - ")
 
     elif msg.reply_to_message.text != None:
-        text = msg.reply_to_message.text
+        text = msg.reply_to_message.text.split(" - ")
 
-    try:
-        link = wikipedia.page(text).url
-        summary = wikipedia.summary(text, sentences=1, auto_suggest=True)
+    if len(text) == 2:
+        try:
+            wikipedia.set_lang(text[0])
+            link = wikipedia.page(text[1]).url
+            summary = wikipedia.summary(text[1], sentences=1, auto_suggest=True)
 
-        wiki = "<b>Link:</b> {}" \
-               "\n\n" \
-               "{}".format(html.escape(link), html.escape(summary))
+            wiki = "{}" \
+                   "\n\n" \
+                   "*Link:* {}".format(summary, link)
 
-        reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+            reply_text(wiki, parse_mode=ParseMode.MARKDOWN, quote=True, disable_web_page_preview=True)
 
-        reply_text(wiki, parse_mode=ParseMode.HTML, quote=True, disable_web_page_preview=True)
+        except:
+            reply_text("No Wikipedia entry found - please try again.", quote=True, failed=True)
+            return
+    else:
+        try:
+            wikipedia.set_lang('en')
+            link = wikipedia.page(text[0]).url
+            summary = wikipedia.summary(text[0], sentences=1, auto_suggest=True)
 
-    except:
-        update.effective_message.reply_text("No Wikipedia entry found - please try again.")
-        return
+            wiki = "*Link:* {}" \
+                   "\n\n" \
+                   "{}".format(link, summary)
+
+            reply_text(wiki, parse_mode=ParseMode.MARKDOWN, quote=True, disable_web_page_preview=True)
+
+        except:
+            reply_text("No Wikipedia entry found - please try again.", quote=True, failed=True)
+            return
+
 
 __help__ = """
- - /wiki <string>: Type a string of words you want to look up on Wikipedia. You can also quote a message instead.
+ - /wiki <lang> - <string>:
+Type a string of words you want to look up on Wikipedia. You can also quote a message instead.
+<lang> parameter is optional, default value is *en* for English.
 """
 
 
