@@ -1,7 +1,7 @@
 import datetime
 import importlib
 from typing import Optional, List
-s
+
 from telegram.error import TelegramError
 from telegram.ext.dispatcher import DispatcherHandlerStop, Dispatcher
 
