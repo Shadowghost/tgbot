@@ -1,4 +1,5 @@
 import re
+from typing import Optional, List
 
 from telegram import Message, Chat, Update, Bot, User
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton
@@ -330,19 +331,19 @@ def migrate_chats(bot: Bot, update: Update):
     raise DispatcherHandlerStop
 
 
-test_handler = CommandHandler("test", test)
-start_handler = CommandHandler("start", start, pass_args=True)
-help_handler = CommandHandler("help", get_help)
-help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_")
-settings_handler = CommandHandler("settings", get_settings)
-settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
-migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
+TEST = CommandHandler("test", test)
+START = CommandHandler("start", start, pass_args=True)
+HELP = CommandHandler("help", get_help)
+HELP_CALLBACK = CallbackQueryHandler(help_button, pattern=r"help_")
+SETTINGS = CommandHandler("settings", get_settings)
+SETTINGS_CALLBACK = CallbackQueryHandler(settings_button, pattern=r"stngs_")
+MIGRATE = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
-# dispatcher.add_handler(test_handler)
-dispatcher.add_handler(start_handler)
-dispatcher.add_handler(help_handler)
-dispatcher.add_handler(settings_handler)
-dispatcher.add_handler(help_callback_handler)
-dispatcher.add_handler(settings_callback_handler)
-dispatcher.add_handler(migrate_handler)
+dispatcher.add_handler(TEST)
+dispatcher.add_handler(START)
+dispatcher.add_handler(HELP)
+dispatcher.add_handler(HELP_CALLBACK)
+dispatcher.add_handler(SETTINGS)
+dispatcher.add_handler(SETTINGS_CALLBACK)
+dispatcher.add_handler(MIGRATE)
 # dispatcher.add_error_handler(error_callback)
