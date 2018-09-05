@@ -31,7 +31,7 @@ if ENV:
         SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
     except ValueError:
         raise Exception("Your sudo users list does not contain valid integers.")
-                                          
+
     try:
         SECRET_SUDO_USERS = set(int(x) for x in os.environ.get("SECRET_SUDO_USERS", "").split())
     except ValueError:
@@ -53,6 +53,7 @@ if ENV:
     CERT_PATH = os.environ.get("CERT_PATH")
 
     DB_URI = os.environ.get('DATABASE_URL')
+    DONATION_LINK = os.environ.get('DONATION_LINK')
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get('DEL_CMDS', False))
@@ -99,6 +100,7 @@ else:
     CERT_PATH = Config.CERT_PATH
 
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
+    DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
     NO_LOAD = Config.NO_LOAD
     DEL_CMDS = Config.DEL_CMDS
@@ -108,7 +110,7 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
     STRICT_GMUTE = Config.STRICT_GMUTE
     API_WEATHER = Config.API_WEATHER
-	
+
 SUDO_USERS.add(OWNER_ID)
 import tg_bot.modules.sql.gpromote_sql as gpromote_sql
 sudo_list = gpromote_sql.get_sudo_list()

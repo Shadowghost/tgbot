@@ -8,8 +8,7 @@ from telegram.ext import CommandHandler, Filters, MessageHandler, CallbackQueryH
 from telegram.ext.dispatcher import run_async, DispatcherHandlerStop
 from telegram.utils.helpers import escape_markdown
 
-from tg_bot import dispatcher, OWNER_ID, LOGGER, DONATION_LINK \
-    ALLOW_EXCL
+from tg_bot import dispatcher, OWNER_ID, LOGGER, DONATION_LINK, ALLOW_EXCL
 from tg_bot.__main__ import STATS, USER_INFO, GDPR, HELPABLE, IMPORTED, MIGRATEABLE, CHAT_SETTINGS, USER_SETTINGS
 from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
@@ -46,7 +45,7 @@ the things I can help you with.
 
 {}
 And the following:
-""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n
+""".format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
@@ -321,6 +320,7 @@ def get_settings(bot: Bot, update: Update):
         send_settings(chat.id, user.id, True)
 
 
+
 @run_async
 def donate(bot: Bot, update: Update):
     user = update.effective_message.from_user
@@ -340,7 +340,7 @@ def donate(bot: Bot, update: Update):
 
             update.effective_message.reply_text("I've PM'ed you about donating to my creator!")
         except Unauthorized:
-update.effective_message.reply_text("Contact me in PM first to get donation information.")
+            update.effective_message.reply_text("Contact me in PM first to get donation information.")
 
 
 @run_async
