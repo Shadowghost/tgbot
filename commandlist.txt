@@ -1,0 +1,93 @@
+abuse - Abuses the cunt
+addblacklist - Add triggers to the blacklist
+addwarn - Set a warning filter on a certain keyword
+adminlist - List of admins in the chat
+ban - Bans a user
+banme - Bans the user who issued the command
+bio - Will get your or another user's bio
+blacklist - View the current blacklisted words
+cleanwelcome - On new member, try to delete the previous welcome message
+clear - Clear note with this name
+clearrules - Clear the rules for this chat
+cmds - Check the current status of disabled commands
+decide - Randomly answers yes/no/maybe
+demote - Demotes the user replied to
+disable - Disable that command
+del - Deletes the message you replied to
+enable - Enable that commands
+filter - Add a filter to this chat
+filters - List all active filters in this chat
+flood - Get the current flood control setting
+gdpr - Deletes your information from the bot's database. Private chats only.
+get - Get the note with a notename
+getlink - Get the invite link for a specific chat
+getsticker - Reply to a sticker to me to upload its raw PNG file
+goodbye - Shows current goodbye settings
+gps - Gives a GoogleMaps link to the given place
+gr - Replying it to a message and I will reply with a grammar corrected version
+gtranslate - Will translate <string> to <lang>; can also be a quote
+id - Get the current group id. If used by replying to a message, gets that user's id.
+info - Get information about a user
+invitelink - Gets invitelink
+kick - Kicks a user
+kickme - Kicks the user who issued the command
+listcmds - List all possible toggleable commands
+listsudo - List all sudo users
+listsupport - List all support users
+lock - Lock items of a certain type
+locks - The current list of locks in this chat
+locktypes - A list of possible locktypes
+logchannel - Get log channel info
+lyrics - Find your favourite songs' lyrics
+notes - Let the note with this notename
+nowarn - Stop a warning filter
+mute - Silences a user
+pin - Silently pins the message replied to
+promote - Promotes the user replied to
+purge - Deletes the replied message, and <int> messages following it
+report - Reply to a message to report it to admins
+reports - Change report setting, or view current status
+resetgoodbye - Reset to the default goodbye message
+resetwarn - Resets warn counter for a user
+resetwelcome - Reset to the default welcome message
+restrict - Restricts a user from sending stickers, gif, embed links or media
+rlg - Join ears, nose, mouth and create an emo
+rmblacklist - Remove triggers from the blacklist
+roll - Roll a dice
+rules - Get the rules for this chat
+save - Saves notedata as a note with name notename
+saved - Let the note with this notename
+sban - Silently bans a user
+setbio - While replying, will save another user's bio
+setflood - Enables or disables flood control
+setgoodbye - Set a custom goodbye message
+setlog - Set the log channel
+setme - Will set your info
+setrules - Set the rules for this chat
+settings - Will redirect you to pm, with all that chat's settings
+setwelcome - Set a custom welcome message
+slap - Slap a user, or get slapped if not a reply
+stickerid - Reply to a sticker to me to tell you its file ID
+stop - Stop that filter
+strongwarn - Decides if user gets kicked or banned when reaching warnlimit
+tban - Bans a user for x time
+time - Gives the local time at the given place
+tmute - Silences a user for x time
+toss - Tosses a coin
+tts - onverts text to speech
+ud - Looks up <word> on the Urban Dictionary
+unban - Unbans a user
+unblacklist - Remove triggers from the blacklist
+unlock - Unlock items of a certain type
+unmute - Unmutes a user
+unpin - Unpins the currently pinned message
+unrestrict - Remove a user's restrictions
+unsetlog - Unset the log channel
+warn - Warn a user. After 3 warns, the user will be banned from the group
+warns - Get a user's number, and reason, of warnings
+warnlimit - Set the warning limit
+warnlist - List of all current warning filters
+weather - Get weather info in a particular place
+welcome - shows current welcome settings
+wiki - Lookup <string> on Wikipedia in language <lang>
+zal - zalgofy! your text
