@@ -1,15 +1,20 @@
 # tgbot
-A modular *Telegram Python bot* running on `python3` with an `sqlalchemy` database.
+A modular *telegram Python bot* running on `python3` with an `sqlalchemy` database.
 
-Originally a simple group management bot with multiple admin features, it has evolved, becoming extremely modular and simple to use.
+Originally a simple group management bot with multiple admin features, it has evolved into becoming a basis for modular
+bots aiming to provide simple plugin expansion via a simple drag and drop.
 
 Can be found on telegram as [Kate](https://t.me/CuttingEdgeBot).
 
-Kate and I are moderating a [group](https://t.me/Bitwrk), where you can ask for help setting up your bot, discover/request new features, report bugs, and stay in the loop whenever a new update is available. Of course I'll also help when a database schema changes, and some table column needs to be modified/added. Note to maintainers that all schema changes will be found in the commit messages, and its their responsibility to read any new commits.
-
-Alternatively, [find me on Telegram](https://t.me/Wick3dPhant0m)!
+Note to maintainers that all schema changes will be found in the commit messages, and its their responsibility to read any new commits.
 
 Keep all support questions in the main chat (as long as it's rules don't state something else), where more people can help you.
+
+## IMPORTANT NOTICE:
+
+This project is no longer under active maintenance. Occasional bug fixes may be released, but no new features are scheduled to be added.
+Users of [Marie](https://t.me/BanhammerMarie_bot) are encouraged to migrate to [Rose](https://t.me/MissRose_bot), which
+is the improved version of this project, written in goloang, with scalability in mind.
 
 ## Starting the bot.
 
@@ -69,7 +74,7 @@ The following env variables are supported:
 
  - `SUDO_USERS`: A space separated list of user_ids which should be considered sudo users
  - `SUPPORT_USERS`: A space separated list of user_ids which should be considered support users (can gban/ungban,
- - `SECRET_SUDO_USERS` : list of id's (not usernames) for users which have sudo acces to bot but secretely.
+ nothing else)
  - `WHITELIST_USERS`: A space separated list of user_ids which should be considered whitelisted - they can't be banned.
  - `DONATION_LINK`: Optional: link where you would like to receive donations.
  - `CERT_PATH`: Path to your webhook certificate
@@ -129,6 +134,8 @@ You should now be able to build your database URI. This will be:
 
 `postgres://username:pw@localhost:5432/db_name`
 
+Replace sqldbtype with whichever db youre using (eg postgres, mysql, sqllite, etc)
+repeat for your username, password, hostname (localhost?), port (5432?), and db name.
 
 ## Modules
 ### Setting load order.
